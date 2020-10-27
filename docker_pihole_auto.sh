@@ -114,7 +114,7 @@ echo "192.168.1.3 thinkcentre.localdomain" >>etc-pihole/custom.list
 
 echo
 echo "Adding and running adlists.sh (if present)..."
-cp /home/$name/adlists.sh .
+cp /home/hermes/adlists.sh .
 docker cp adlists.sh $name:/home
 docker exec $name /home/adlists.sh
 
