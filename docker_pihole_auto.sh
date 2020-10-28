@@ -44,9 +44,9 @@ echo
 while true; do
     read -p "SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport / INSTALL PATH: $(pwd) - Is this correct? " yn
     case $yn in
-        [Yy]* ) break;
-        [Nn]* ) exit 0
-        * ) echo "Please answer [y]es or [n]o.";
+        [Yy]* ) break;;
+        [Nn]* ) exit 0;;
+        * ) echo "Please answer [y]es or [n]o.";;
     esac
 done
 
