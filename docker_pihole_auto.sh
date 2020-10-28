@@ -76,7 +76,7 @@ docker run -d \
         -e DNS1="172.17.0.4" \
         -e DNS2="1.1.1.1" \
 	-e DNS_FQDN_REQUIRED="true" \
-	-e DNSSEC="true" \
+	-e DNSSEC="false" \
 	-e DNS_BOGUS_PRIV="true" \
         -e CONDITIONAL_FORWARDING="true" \
         -e CONDITIONAL_FORWARDING_IP="192.168.1.1" \
