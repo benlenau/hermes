@@ -2,10 +2,10 @@
 
 #default values
 name=${1:-hermes}
-httpip=192.168.1.3
-dnsip=0.0.0.0
-dnsport=53
-httpport=8080
+httpip=${2:-192.168.1.3}
+dnsip=${3:-0.0.0.0}
+dnsport=${3:-53}
+httpport=${3:-8080}
 
 echo
 echo "---- Current path: $(pwd) ----"
