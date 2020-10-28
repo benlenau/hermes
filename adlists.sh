@@ -3,7 +3,7 @@
 # update pihole
 sqlite3 /etc/pihole/gravity.db "SELECT Address FROM adlist" |sort >pihole.list
 
-# uncomment following wget-lines if you want more list
+# uncomment following wget-lines if you want more adlists added
 #wget -qO - https://v.firebog.net/hosts/lists.php?type=tick |sort >>temp.list
 #echo "https://block.energized.pro/ultimate/formats/hosts.txt" >>temp.list
 
