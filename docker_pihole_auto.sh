@@ -84,17 +84,21 @@ docker run -d \
         pihole/pihole:latest
 
 echo
-echo "Please wait 20 seconds for install to finish..."
+echo "Please for install to finish "
 
-sleep 20 &
-PID=$!
-i=1
-sp="/-\|"
-echo -n ' '
-while [ -d /proc/$PID ]
-do
-  printf "\b${sp:i++%${#sp}:1}"
-done
+for i in $(seq 1 20); do
+    if [ "$(docker inspect -f "{{.State.Health.Status}}" $name)" == "healthy" ] ; then
+        printf ' OK'
+    else
+        sleep 2
+        printf '.'
+    fi
+
+    if [ $i -eq 20 ] ; then
+        echo -e "\nTimed out waiting for Pi-hole start, consult check your container logs for more info (\`docker logs pihole\`)"
+        exit 1
+    fi
+done;
 
 echo
 echo
