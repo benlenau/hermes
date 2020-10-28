@@ -35,9 +35,9 @@ while true; do
                 docker stop $name
                 docker rm $name
                 rm etc-* -r
-		break
-        [Nn]* ) break
-        * ) echo "Please answer [y]es or [n]o.";;
+		break;
+        [Nn]* ) break;
+        * ) echo "Please answer [y]es or [n]o.";
     esac
 done
 
@@ -45,9 +45,9 @@ echo
 while true; do
     read -p "SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport / INSTALL PATH: $(pwd) - Is this correct? " yn
     case $yn in
-        [Yy]* ) break
+        [Yy]* ) break;
         [Nn]* ) exit 0
-        * ) echo "Please answer [y]es or [n]o."
+        * ) echo "Please answer [y]es or [n]o.";
     esac
 done
 
