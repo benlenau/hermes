@@ -72,8 +72,8 @@ docker run -d \
         -e WEBPASSWORD="" \
         -e VIRTUAL_HOST=$name \
         -e PROXY_LOCATION=$name \
-        -e DNS1="1.1.1.1" \
-        -e DNS2="1.0.0.1" \
+        -e DNS1="172.17.0.4" \
+        -e DNS2="1.1.1.1" \
 	-e DNS_FQDN_REQUIRED="true" \
 	-e DNSSEC="true" \
 	-e DNS_BOGUS_PRIV="true" \
