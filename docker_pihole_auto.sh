@@ -26,15 +26,6 @@ dnsport=${REPLY:-$dnsport}
 read -p "Please enter HTTP port number [$httpport]: "
 httpport=${REPLY:-$httpport}
 
-while true; do
-    read -p "SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport / INSTALL PATH: $(pwd) - Is this correct? " yn
-    case $yn in
-        [Yy]* ) break;;
-        [Nn]* ) exit;;
-        * ) echo "Please answer [y]es or [n]o.";;
-    esac
-done
-
 echo
 while true; do
     read -p "Do you wish to stop and delete previous $name docker install? " yn
@@ -49,10 +40,17 @@ while true; do
     esac
 done
 
-echo
-echo "Updating container image to latest..."
+while true; do
+    read -p "SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport / INSTALL PATH: $(pwd) - Is this correct? " yn
+    case $yn in
+        [Yy]* ) break;;
+        [Nn]* ) exit;;
+        * ) echo "Please answer [y]es or [n]o.";;
+    esac
+done
 
 echo
+echo "Updating container image to latest..."
 docker pull pihole/pihole:latest
 
 echo
