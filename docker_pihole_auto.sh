@@ -51,7 +51,7 @@ while true; do
 done
 
 echo
-echo "Updating container image to latest..."
+echo "Updating Pi-hole container image (pihole/pihole:latest)..."
 docker pull pihole/pihole:latest
 
 echo
@@ -86,17 +86,17 @@ docker run -d \
 echo
 printf "Please wait for container install to finish"
 
-for i in $(seq 1 40); do
+for i in $(seq 1 60); do
     if [ "$(docker inspect -f "{{.State.Health.Status}}" $name)" == "healthy" ] ; then
         printf ' OK'
 	break;
     else
-        sleep 2
+        sleep 1
         printf '.'
     fi
 
-    if [ $i -eq 40 ] ; then
-        echo -e "\nTimed out waiting for Pi-hole start, consult check your container logs for more info (\`docker logs pihole\`)"
+    if [ $i -eq 60 ] ; then
+        echo -e "\nTimed out waiting for $name to start! Please consult container logs for more info (\`docker logs $name\`)"
         exit 1
     fi
 done;
@@ -104,7 +104,6 @@ done;
 echo
 echo
 echo "Adding whitelists..."
-
 docker exec $name pihole --white-regex "(\.|^)microsoft\.com$" "(\.|^)gvt3\.com$" "(\.|^)gvt2\.com$" "(\.|^)gstatic\.com$" "(\.|^)youtube\.com$"
 
 echo
@@ -112,7 +111,7 @@ echo "Adding TLD blacklists..."
 docker exec $name pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$"
 
 echo
-echo "Adding local DNS records"
+echo "Adding local DNS records (if present)..."
 cp $(pwd)/custom.list etc-pihole/
 
 echo
