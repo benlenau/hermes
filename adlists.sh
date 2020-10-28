@@ -5,7 +5,7 @@ sqlite3 /etc/pihole/gravity.db "SELECT Address FROM adlist" |sort >pihole.list
 
 # uncomment following wget-lines if you want more list
 #wget -qO - https://v.firebog.net/hosts/lists.php?type=tick |sort >>temp.list
-#wget -qO - https://block.energized.pro/ultimate/formats/hosts.txt |sort >>temp.list
+#echo "https://block.energized.pro/ultimate/formats/hosts.txt" >>temp.list
 
 echo "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt" >>temp.list
 echo "https://mirror1.malwaredomains.com/files/justdomains" >>temp.list
