@@ -4,8 +4,8 @@
 name=${1:-hermes}
 httpip=${2:-192.168.1.3}
 dnsip=${3:-0.0.0.0}
-dnsport=${3:-53}
-httpport=${3:-8080}
+dnsport=${4:-53}
+httpport=${5:-8080}
 
 echo
 echo "---- Current path: $(pwd) ----"
