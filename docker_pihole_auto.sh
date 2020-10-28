@@ -40,6 +40,7 @@ while true; do
     esac
 done
 
+echo
 while true; do
     read -p "SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport / INSTALL PATH: $(pwd) - Is this correct? " yn
     case $yn in
