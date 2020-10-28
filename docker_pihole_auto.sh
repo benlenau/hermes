@@ -34,10 +34,9 @@ while true; do
                 echo "Removing $name"
                 docker stop $name
                 docker rm $name
-                rm etc-* -r
-		break;
-        [Nn]* ) break;
-        * ) echo "Please answer [y]es or [n]o.";
+                rm etc-* -r; break;;
+        [Nn]* ) break;;
+        * ) echo "Please answer [y]es or [n]o.";;
     esac
 done
 
