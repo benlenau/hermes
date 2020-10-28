@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #default values
-name=hermes
+name=${1:-hermes}
 httpip=192.168.1.3
 dnsip=0.0.0.0
 dnsport=53
