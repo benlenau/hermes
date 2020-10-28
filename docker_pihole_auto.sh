@@ -84,9 +84,9 @@ docker run -d \
         pihole/pihole:latest
 
 echo
-echo "Please for install to finish "
+echo "Please for container install to finish "
 
-for i in $(seq 1 20); do
+for i in $(seq 1 40); do
     if [ "$(docker inspect -f "{{.State.Health.Status}}" $name)" == "healthy" ] ; then
         printf ' OK'
     else
@@ -94,7 +94,7 @@ for i in $(seq 1 20); do
         printf '.'
     fi
 
-    if [ $i -eq 20 ] ; then
+    if [ $i -eq 40 ] ; then
         echo -e "\nTimed out waiting for Pi-hole start, consult check your container logs for more info (\`docker logs pihole\`)"
         exit 1
     fi
