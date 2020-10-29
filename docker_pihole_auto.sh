@@ -1,6 +1,8 @@
 #!/bin/bash
 
 #default values
+DNS1=172.17.0.4 # Change this to your primary DNS provider
+DNS2=172.17.0.4 # Change this to your secondary DNS provider
 name=${1:-hermes}
 httpip=${2:-192.168.1.3}
 dnsip=${3:-0.0.0.0}
@@ -73,8 +75,8 @@ docker run -d \
         -e WEBPASSWORD="" \
         -e VIRTUAL_HOST=$name \
         -e PROXY_LOCATION=$name \
-        -e DNS1="172.17.0.4" \
-        -e DNS2="1.1.1.1" \
+        -e DNS1="$DNS1" \
+        -e DNS2="$DNS2" \
 	-e DNS_FQDN_REQUIRED="true" \
 	-e DNSSEC="false" \
 	-e DNS_BOGUS_PRIV="true" \
