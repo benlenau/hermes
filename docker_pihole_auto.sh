@@ -112,9 +112,9 @@ echo
 echo "Adding TLD blacklists..."
 docker exec $name pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$"
 
-#echo
-#echo "Adding local DNS records (if present)..."
-#cp $(pwd)/custom.list etc-pihole/
+echo
+echo "Adding local DNS records (if present)..."
+cp $(pwd)/custom.list etc-pihole/
 
 echo
 echo "Adding and running adlists.sh (if present)..."
