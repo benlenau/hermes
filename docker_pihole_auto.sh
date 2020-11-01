@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #default values
-DNS1=1.1.1.1 # Change this to your primary DNS provider
-DNS2=1.0.0.1 # Change this to your secondary DNS provider
+DNS1=8.8.8.8 # Change this to your preferred DNS provider
+DNS2=8.8.4.4 # Change this to your preferred DNS provider
 name=${1:-hermes}
 httpip=${2:-192.168.1.3}
 dnsip=${3:-0.0.0.0}
