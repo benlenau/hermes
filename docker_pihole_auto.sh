@@ -66,8 +66,6 @@ docker run -d \
         -p $dnsip:$dnsport:53/udp \
         -p $httpip:$httpport:80 \
         -e TZ="Europe/Copenhagen" \
-        -v "$(pwd)/etc-pihole/:/etc/pihole/" \
-        -v "$(pwd)/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
 	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
         --dns=192.168.1.1 \
         --restart=unless-stopped \
@@ -116,7 +114,7 @@ docker exec $name pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$
 
 echo
 echo "Adding local DNS records (if present)..."
-cp $(pwd)/custom.list etc-pihole/
+docker cp (pwd)/custom.list $name:/etc/pihole/custom.list
 
 echo
 echo "Adding and running adlists.sh (if present)..."
