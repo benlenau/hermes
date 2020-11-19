@@ -35,8 +35,7 @@ while true; do
         [Yy]* ) echo
                 echo "Removing $name"
                 docker stop $name
-                docker rm $name
-                rm etc-* -r; break;;
+                docker rm $name; break;;
         [Nn]* ) break;;
         * ) echo "Please answer [y]es or [n]o.";;
     esac
