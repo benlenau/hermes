@@ -66,7 +66,6 @@ docker run -d \
         -p $httpip:$httpport:80 \
         -e TZ="Europe/Copenhagen" \
 	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
-	-v "$(pwd)/custom.list:/etc/pihole/custom.list" \
         --dns=192.168.1.1 \
         --restart=unless-stopped \
         --hostname=$name \
@@ -112,9 +111,9 @@ echo
 echo "Adding TLD blacklists..."
 docker exec $name pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$"
 
-#echo
-#echo "Adding local DNS records (if present)..."
-#docker cp $(pwd)/custom.list $name:/etc/pihole/custom.list
+echo
+echo "Adding local DNS records (if present)..."
+docker cp $(pwd)/custom.list $name:/etc/pihole/custom.list
 
 echo
 echo "Adding and running adlists.sh (if present)..."
