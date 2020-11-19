@@ -114,7 +114,7 @@ docker exec $name pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$
 
 echo
 echo "Adding local DNS records (if present)..."
-docker cp (pwd)/custom.list $name:/etc/pihole/custom.list
+docker cp $(pwd)/custom.list $name:/etc/pihole/custom.list
 
 echo
 echo "Adding and running adlists.sh (if present)..."
