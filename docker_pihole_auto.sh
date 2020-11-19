@@ -68,6 +68,7 @@ docker run -d \
         -e TZ="Europe/Copenhagen" \
         -v "$(pwd)/etc-pihole/:/etc/pihole/" \
         -v "$(pwd)/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
+	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
         --dns=192.168.1.1 \
         --restart=unless-stopped \
         --hostname=$name \
@@ -119,7 +120,6 @@ cp $(pwd)/custom.list etc-pihole/
 
 echo
 echo "Adding and running adlists.sh (if present)..."
-docker cp $(pwd)/adlists.sh $name:/home
 docker exec $name /home/adlists.sh
 
 echo
