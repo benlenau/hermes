@@ -3,7 +3,7 @@ My version of Pi-hole using the official docker container from Pi-hole.net (http
 
 Greatly inspired by https://github.com/pi-hole/docker-pi-hole/blob/master/docker_run.sh
 
-This is my own intepretation. And no, I haven't implemented docker-compose + .yml yet, but some day i might try.
+This is my own interpretation. And no, I haven't implemented docker-compose + .yml yet, but some day I might try.
 
 Hermes (excerpt from https://en.wikipedia.org/wiki/Hermes):
 In myth, Hermes functioned as the emissary and messenger of the gods, and was often presented as the son of Zeus and Maia, the Pleiad. He is regarded as "the divine trickster," for which Homer offers the most popular account in his Hymn to Hermes.
