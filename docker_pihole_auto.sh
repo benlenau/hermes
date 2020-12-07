@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#default values
+#Default values
 DNS1=8.8.8.8 # Change this to your preferred DNS provider
 DNS2=8.8.4.4 # Change this to your preferred DNS provider
 name=${1:-hermes}
