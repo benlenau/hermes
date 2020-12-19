@@ -81,7 +81,6 @@ docker run -d \
         -e CONDITIONAL_FORWARDING="true" \
         -e CONDITIONAL_FORWARDING_IP="192.168.1.1" \
         -e CONDITIONAL_FORWARDING_DOMAIN="localdomain" \
-	-l "diun.enable=true" \
         pihole/pihole:latest
 
 echo
