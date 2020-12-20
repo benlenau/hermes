@@ -53,7 +53,7 @@ done
 
 echo
 echo "Updating Pi-hole container image (pihole/pihole:latest)..."
-docker pull pihole/pihole:master
+docker pull pihole/pihole:latest
 
 echo
 echo "Installing... SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport"
@@ -79,7 +79,7 @@ docker run -d \
         -e REV_SERVER="true" \
         -e REV_SERVER_TARGET="192.168.1.1" \
 	-e REV_SERVER_CIDR="0.168.192.in-addr.arpa" \
-        pihole/pihole:master
+        pihole/pihole:latest
 
 echo
 printf "Please wait for container install to finish"
