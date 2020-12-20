@@ -53,7 +53,7 @@ done
 
 echo
 echo "Updating Pi-hole container image (pihole/pihole:latest)..."
-docker pull pihole/pihole:latest
+docker pull pihole/pihole:master
 
 echo
 echo "Installing... SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport"
