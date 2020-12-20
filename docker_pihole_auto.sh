@@ -79,7 +79,7 @@ docker run -d \
         -e REV_SERVER="true" \
         -e REV_SERVER_TARGET="192.168.1.1" \
 	-e REV_SERVER_CIDR="0.168.192.in-addr.arpa" \
-        pihole/pihole:latest
+        pihole/pihole:master
 
 echo
 printf "Please wait for container install to finish"
