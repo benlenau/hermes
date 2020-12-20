@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #Default values
-DNS1=8.8.8.8 # Change this to your preferred DNS provider
-DNS2=8.8.4.4 # Change this to your preferred DNS provider
+DNS1=192.168.1.1 # Change this to your preferred DNS provider
+DNS2=192.168.1.1 # Change this to your preferred DNS provider
 name=${1:-hermes}
 httpip=${2:-192.168.1.3}
 dnsip=${3:-0.0.0.0}
@@ -75,12 +75,9 @@ docker run -d \
         -e PROXY_LOCATION=$name \
         -e DNS1=$DNS1 \
         -e DNS2=$DNS2 \
-	-e DNS_FQDN_REQUIRED="true" \
 	-e DNSSEC="false" \
-	-e DNS_BOGUS_PRIV="true" \
         -e CONDITIONAL_FORWARDING="true" \
         -e CONDITIONAL_FORWARDING_IP="192.168.1.1" \
-        -e CONDITIONAL_FORWARDING_DOMAIN="localdomain" \
         pihole/pihole:latest
 
 echo
