@@ -76,8 +76,9 @@ docker run -d \
         -e DNS1=$DNS1 \
         -e DNS2=$DNS2 \
 	-e DNSSEC="false" \
-        -e CONDITIONAL_FORWARDING="true" \
-        -e CONDITIONAL_FORWARDING_IP="192.168.1.1" \
+        -e REV_SERVER="true" \
+        -e REV_SERVER_TARGET="192.168.1.1" \
+	-e REV_SERVER_CIDR="0.168.192.in-addr.arpa" \
         pihole/pihole:latest
 
 echo
