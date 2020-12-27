@@ -4,7 +4,7 @@
 DNS1=192.168.1.1 # Change this to your preferred DNS provider
 DNS2=192.168.1.1 # Change this to your preferred DNS provider
 name=${1:-hermes}
-httpip=${2:-192.168.1.3}
+httpip=${2:-0.0.0.0}
 dnsip=${3:-0.0.0.0}
 dnsport=${4:-53}
 httpport=${5:-8080}
@@ -61,20 +61,24 @@ echo "Installing... SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnspo
 echo
 docker run -d \
         --name $name \
-        -p $dnsip:$dnsport:53 \
+        -p $dnsip:$dnsport:53/tcp \
         -p $dnsip:$dnsport:53/udp \
         -p $httpip:$httpport:80 \
         -e TZ="Europe/Copenhagen" \
 	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
         --dns=192.168.1.1 \
         --restart=unless-stopped \
-        --hostname=$name \
-        --dns-search=localdomain \
+	--hostname=$name \
+        --dns-search="localdomain" \
+        --dns-search="iot" \
+        --dns-search="svr" \
+        --dns-search="guest" \
+	--dns-search=localdomain \
         -e WEBPASSWORD="" \
         -e VIRTUAL_HOST=$name \
-        -e PROXY_LOCATION=$name \
-        -e DNS1=$DNS1 \
-        -e DNS2=$DNS2 \
+	-e PIHOLE_DNS_="$DNS1;DNS2" \
+        -e DNS_FQDN_REQUIRED="false" \
+        -e DNS_BOGUS_PRIV="false" \
 	-e CONDITIONAL_FORWARDING="true" \
 	-e CONDITIONAL_FORWARDING_IP="192.168.1.1" \
         pihole/pihole:latest
@@ -97,21 +101,10 @@ for i in $(seq 1 60); do
     fi
 done;
 
-echo
-echo
-echo "Adding whitelists..."
-docker exec $name pihole --white-regex "(\.|^)microsoft\.com$" "(\.|^)gvt3\.com$" "(\.|^)gvt2\.com$" "(\.|^)gstatic\.com$" "(\.|^)youtube\.com$"
-
-echo
-echo "Adding TLD blacklists..."
-docker exec $name pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$"
-
-echo
-echo "Adding local DNS records (if present)..."
+# Add local DNS records.
 docker cp $(pwd)/custom.list $name:/etc/pihole/custom.list
 
-echo
-echo "Adding and running adlists.sh (if present)..."
+# Running adlists.sh inside Pi-hole docker container
 docker exec $name /home/adlists.sh
 
 echo
