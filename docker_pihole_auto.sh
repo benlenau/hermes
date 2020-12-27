@@ -73,10 +73,9 @@ docker run -d \
         --dns-search="iot" \
         --dns-search="svr" \
         --dns-search="guest" \
-	--dns-search=localdomain \
         -e WEBPASSWORD="" \
         -e VIRTUAL_HOST=$name \
-	-e PIHOLE_DNS_="$DNS1;DNS2" \
+	-e PIHOLE_DNS_="$DNS1;$DNS2" \
         -e DNS_FQDN_REQUIRED="false" \
         -e DNS_BOGUS_PRIV="false" \
 	-e CONDITIONAL_FORWARDING="true" \
