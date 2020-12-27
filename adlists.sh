@@ -22,6 +22,12 @@ rm all.list temp.list pihole.list
 #apt install -y python3
 #curl -sSl https://raw.githubusercontent.com/mmotti/pihole-regex/master/install.py | sudo python3
 
-# Restart and Reload Pi-hole contents
+# Whitelisting stuff
+docker exec $name pihole --white-regex "(\.|^)microsoft\.com$" "(\.|^)gvt3\.com$" "(\.|^)gvt2\.com$" "(\.|^)gstatic\.com$" "(\.|^)youtube\.com$" "(\.|^)ui\.com$"
+
+# Blacklisting stuff
+docker exec $name pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$" "fivem"
+
+# Restart and reload Pi-hole
 pihole restartdns reload-lists
 pihole -g
