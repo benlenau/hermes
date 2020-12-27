@@ -87,7 +87,7 @@ printf "Please wait for container install to finish"
 
 for i in $(seq 1 60); do
     if [ "$(docker inspect -f "{{.State.Health.Status}}" $name)" == "healthy" ] ; then
-        printf ' OK'
+        printf ' OK\n\n'
 	break;
     else
         sleep 1
