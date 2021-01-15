@@ -74,8 +74,7 @@ docker run -d \
         --dns-search="svr" \
         --dns-search="guest" \
         -e WEBPASSWORD="" \
-	-e DNSMASQ_USER=pihole \
-        -e VIRTUAL_HOST=$name \
+	-e VIRTUAL_HOST=$name \
 	-e PIHOLE_DNS_="$DNS1;$DNS2" \
         -e DNS_FQDN_REQUIRED="false" \
         -e DNS_BOGUS_PRIV="false" \
