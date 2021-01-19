@@ -67,6 +67,7 @@ docker run -d \
         -p $httpip:$httpport:80 \
         -e TZ="Europe/Copenhagen" \
 	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
+	-v "$(pwd)/custom.list:/etc/pihole/custom.list" \
         --dns=192.168.1.1 \
         --restart=unless-stopped \
 	--hostname=$name \
