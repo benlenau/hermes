@@ -67,7 +67,6 @@ docker run -d \
         -p $httpip:$httpport:80 \
         -e TZ="Europe/Copenhagen" \
 	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
-	-v "$(pwd)/custom.list:/etc/pihole/custom.list" \
         --dns=192.168.1.1 \
         --restart=unless-stopped \
 	--hostname=$name \
@@ -100,9 +99,9 @@ for i in $(seq 1 60); do
 done;
 
 # Add local DNS records.
-#if [ -f $(pwd)/custom.list ]; then
-#	docker cp $(pwd)/custom.list $name:/etc/pihole/custom.list
-#fi
+if [ -f $(pwd)/custom.list ]; then
+	docker cp $(pwd)/custom.list $name:/etc/pihole/custom.list
+fi
 
 # Running adlists.sh inside Pi-hole docker container
 if [ -f $(pwd)/adlists.sh ]; then
