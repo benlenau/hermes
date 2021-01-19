@@ -76,8 +76,8 @@ docker run -d \
 	-e PIHOLE_DNS_="$DNS1;$DNS2" \
         -e DNS_FQDN_REQUIRED="false" \
         -e DNS_BOGUS_PRIV="false" \
-	-e CONDITIONAL_FORWARDING="true" \
-	-e CONDITIONAL_FORWARDING_IP="192.168.1.1" \
+	-e REV_SERVER="true" \
+	-e REV_SERVER_TARGET="192.168.1.1" \
         pihole/pihole:latest
 
 echo
