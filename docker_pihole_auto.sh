@@ -100,9 +100,9 @@ for i in $(seq 1 60); do
 done;
 
 # Add local DNS records.
-if [ -f $(pwd)/custom.list ]; then
-	docker cp $(pwd)/custom.list $name:/etc/pihole/custom.list
-fi
+#if [ -f $(pwd)/custom.list ]; then
+#	docker cp $(pwd)/custom.list $name:/etc/pihole/custom.list
+#fi
 
 # Running adlists.sh inside Pi-hole docker container
 if [ -f $(pwd)/adlists.sh ]; then
