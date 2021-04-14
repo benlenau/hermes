@@ -105,8 +105,8 @@ if [ -f $(pwd)/custom.list ]; then
 fi
 
 # Add local dnsmasq records.
-if [ -f $(pwd)/*.conf ]; then
-	docker cp $(pwd)/*.conf $name:/etc/dnsmasq.d/
+if [ -f $(pwd)/*conf ]; then
+	docker cp $(pwd)/*conf $name:/etc/dnsmasq.d/
 fi
 
 # Running adlists.sh inside Pi-hole docker container
