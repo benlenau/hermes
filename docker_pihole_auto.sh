@@ -114,5 +114,8 @@ if [ -f $(pwd)/adlists.sh ]; then
 	docker exec $name /home/adlists.sh
 fi
 
+# Restarting pihole DNS
+docker exec $name pihole restartdns
+
 echo
 echo "Done!"
