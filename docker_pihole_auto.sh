@@ -50,19 +50,20 @@ echo
 printf "Please wait for Pi-hole Docker container to finish install"
 
 for i in $(seq 1 60); do
-    if [ "$(docker inspect -f "{{.State.Health.Status}}" $name)" == "healthy" ] ; then
+    if [ "$(docker inspect -f "{{.State.Health.Status}}" $name)" = "healthy" ] ; then
         printf ' OK\n\n'
-	break;
+	break
     else
         sleep 1
         printf '.'
     fi
+done
 
-    if [ $i -eq 60 ] ; then
-        echo -e "\nTimed out waiting for $name to start! Please consult container logs for more info (\`docker logs $name\`)"
-        exit 1
-    fi
-done;
+# Exit if healthcheck fails
+if [ $i -eq 60 ] ; then
+	echo "\nTimed out waiting for $name to start! Please consult container logs for more info (\`docker logs $name\`)"
+	exit 0
+fi
 
 # Add custom DNS records.
 if [ -f $(pwd)/custom.list ]; then
