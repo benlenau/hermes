@@ -14,7 +14,7 @@ echo "Checking and updating Pi-hole container image (pihole/pihole:latest)..."
 docker pull pihole/pihole:latest
 
 echo
-read -p "Do you wish to stop and delete previous $name docker install [y or N]? " yn
+read -p "Do you wish to stop and delete the current $name Docker install [y or N]? " yn
 case $yn in
 	Y | y ) echo
 	echo "Removing $name"
