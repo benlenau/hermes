@@ -1,60 +1,27 @@
 #!/bin/bash
 
-#Default values
 DNS1=192.168.1.1 # Change this to your preferred DNS provider
 DNS2=192.168.1.1 # Change this to your preferred DNS provider
 DNSMASQ_USER=root # Change user running dns to either pihole (increase security) or root
-name=${1:-hermes}
-httpip=${2:-192.168.1.2}
-dnsip=${3:-0.0.0.0}
-dnsport=${4:-53}
-httpport=${5:-8080}
+name=hermes # Docker host name
+httpip=192.168.1.2 # What host interface IPs should the container be available on
+httpport=8080
+dnsip=0.0.0.0 # On what host interfaces should DNS lookup be possible
+dnsport=53
 
 echo
-echo "---- Current path: $(pwd) ----"
-
-echo
-read -p "Please enter Pi-Hole Server Name [$name]: "
-name=${REPLY:-$name}
-
-read -p "Please enter HTTP IP for Pi-hole Server [$httpip]: "
-httpip=${REPLY:-$httpip}
-
-read -p "Please enter DNS IP for Pi-hole Server [$dnsip]: "
-dnsip=${REPLY:-$dnsip}
-
-read -p "Please enter DNS port number [$dnsport]: "
-dnsport=${REPLY:-$dnsport}
-
-read -p "Please enter HTTP port number [$httpport]: "
-httpport=${REPLY:-$httpport}
-
-echo
-while true; do
-    read -p "Do you wish to stop and delete previous $name docker install? " yn
-    case $yn in
-        [Yy]* ) echo
-                echo "Removing $name"
-                docker stop $name
-                docker rm $name; break;;
-        [Nn]* ) break;;
-        * ) echo "Please answer [y]es or [n]o.";;
-    esac
-done
-
-echo
-while true; do
-    read -p "SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport / INSTALL PATH: $(pwd) - Is this correct? " yn
-    case $yn in
-        [Yy]* ) break;;
-        [Nn]* ) exit 0;;
-        * ) echo "Please answer [y]es or [n]o.";;
-    esac
-done
-
-echo
-echo "Updating Pi-hole container image (pihole/pihole:latest)..."
+echo "Checking and updating Pi-hole container image (pihole/pihole:latest)..."
 docker pull pihole/pihole:latest
+
+echo
+read -p "Do you wish to stop and delete previous $name docker install? " yn
+case $yn in
+	Y | y ) echo
+	echo "Removing $name"
+	docker stop $name
+	docker rm $name;;
+	* ) exit 0;;
+esac
 
 echo
 echo "Installing... SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport"
@@ -82,7 +49,7 @@ docker run -d \
 	pihole/pihole:latest
 
 echo
-printf "Please wait for container install to finish"
+printf "Please wait for container to finish install"
 
 for i in $(seq 1 60); do
     if [ "$(docker inspect -f "{{.State.Health.Status}}" $name)" == "healthy" ] ; then
