@@ -76,7 +76,7 @@ fi
 
 # Run adlists.sh inside Docker container to add and update adlists from other sources.
 if [ -f $(pwd)/adlists.sh ]; then
-	docker exec $name /home/adlists.sh
+	docker exec $name sh /home/adlists.sh
 fi
 
 # Run Pi-hole DNS restart inside Docker container to make install changes permanent
