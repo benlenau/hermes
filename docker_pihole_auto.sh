@@ -3,9 +3,9 @@ DNS1=192.168.1.1 # Change this to your preferred DNS provider
 DNS2=192.168.1.1 # Change this to your preferred DNS provider
 DNSMASQ_USER=root # Change user running dns to either pihole (increase security) or root
 name=hermes # Docker host name
-httpip=192.168.1.2 # What host interface IPs should the container be available on
+httpip=192.168.1.2 # Host interface IP HTTP container availability
 httpport=8080
-dnsip=0.0.0.0 # On what host interfaces should DNS lookup be possible
+dnsip=0.0.0.0 # Host interface IP DNS container availability
 dnsport=53
 
 # Update to latest Pi-hole container image
