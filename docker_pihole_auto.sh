@@ -64,7 +64,7 @@ for i in $(seq 1 60); do
     fi
 done;
 
-# Add local DNS records.
+# Add custom DNS records.
 if [ -f $(pwd)/custom.list ]; then
 	docker cp $(pwd)/custom.list $name:/etc/pihole/custom.list
 fi
