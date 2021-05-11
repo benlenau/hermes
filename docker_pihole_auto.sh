@@ -81,6 +81,3 @@ fi
 
 # Run Pi-hole DNS restart inside Docker container to make install changes permanent
 docker exec $name pihole restartdns
-
-echo
-echo "Done!"
