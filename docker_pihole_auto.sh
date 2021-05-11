@@ -8,7 +8,7 @@ httpport=8080
 dnsip=0.0.0.0 # On what host interfaces should DNS lookup be possible
 dnsport=53
 
-echo "Checking (and updating) Pi-hole container image (pihole/pihole:latest)..."
+# Checking and update Pi-hole container image
 docker pull pihole/pihole:latest
 
 echo
