@@ -1,5 +1,4 @@
 #!/bin/bash
-
 DNS1=192.168.1.1 # Change this to your preferred DNS provider
 DNS2=192.168.1.1 # Change this to your preferred DNS provider
 DNSMASQ_USER=root # Change user running dns to either pihole (increase security) or root
@@ -9,8 +8,7 @@ httpport=8080
 dnsip=0.0.0.0 # On what host interfaces should DNS lookup be possible
 dnsport=53
 
-echo
-echo "Checking and updating Pi-hole container image (pihole/pihole:latest)..."
+echo "Checking (and updating) Pi-hole container image (pihole/pihole:latest)..."
 docker pull pihole/pihole:latest
 
 echo
@@ -49,7 +47,7 @@ docker run -d \
 	pihole/pihole:latest
 
 echo
-printf "Please wait for container to finish install"
+printf "Please wait for Docker container to finish install"
 
 for i in $(seq 1 60); do
     if [ "$(docker inspect -f "{{.State.Health.Status}}" $name)" == "healthy" ] ; then
@@ -76,12 +74,12 @@ if [ -f $(pwd)/10-custom-dnsmasq.conf ]; then
 	docker cp $(pwd)/10-custom-dnsmasq.conf $name:/etc/dnsmasq.d/
 fi
 
-# Running adlists.sh inside Pi-hole docker container
+# Run adlists.sh inside Docker container to add and update adlists from other sources.
 if [ -f $(pwd)/adlists.sh ]; then
 	docker exec $name /home/adlists.sh
 fi
 
-# Restarting pihole DNS
+# Run Pi-hole DNS restart inside Docker container to make install changes permanent
 docker exec $name pihole restartdns
 
 echo
