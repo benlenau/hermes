@@ -47,7 +47,7 @@ docker run -d \
 	pihole/pihole:latest
 
 echo
-printf "Please wait for Docker container to finish install"
+printf "Please wait for Pi-hole Docker container to finish install"
 
 for i in $(seq 1 60); do
     if [ "$(docker inspect -f "{{.State.Health.Status}}" $name)" == "healthy" ] ; then
