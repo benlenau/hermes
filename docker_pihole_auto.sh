@@ -18,7 +18,7 @@ case $yn in
 	echo "Removing $name"
 	docker stop $name
 	docker rm $name;;
-	* ) exit 0;;
+	* ) exit 1;;
 esac
 
 echo
@@ -62,7 +62,7 @@ done
 # Exit if healthcheck fails
 if [ $i -eq 60 ] ; then
 	echo "\nTimed out waiting for $name to start! Please consult container logs for more info (\`docker logs $name\`)"
-	exit 0
+	exit 1
 fi
 
 # Add custom DNS records.
