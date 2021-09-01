@@ -1,6 +1,6 @@
 #!/bin/bash
-DNS1=192.168.1.1 # Change this to your preferred DNS provider
-DNS2=192.168.1.1 # Change this to your preferred DNS provider
+DNS1=1.1.1.1 # Change this to your preferred DNS provider
+DNS2=1.0.0.1 # Change this to your preferred DNS provider
 DNSMASQ_USER=root # Change user running dns to either pihole (increase security) or root
 name=hermes # Docker host name
 httpip=192.168.1.2 # Host interface IP HTTP container availability
@@ -32,7 +32,8 @@ docker run -d \
         -p $httpip:$httpport:80 \
         -e TZ="Europe/Copenhagen" \
 	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
-        --dns=192.168.1.1 \
+        --dns=1.1.1.1 \
+	--dns=1.0.0.1 \
         --restart=unless-stopped \
 	--hostname=$name \
         -e WEBPASSWORD="" \
