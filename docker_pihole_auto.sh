@@ -1,7 +1,7 @@
 #!/bin/bash
 DNS1=1.1.1.1 # Change this to your preferred DNS provider
 DNS2=1.0.0.1 # Change this to your preferred DNS provider
-DNSMASQ_USER=root # Change user running dns to either pihole (increase security) or root
+DNSMASQ_USER=pihole # Change user running dns to either pihole (increase security) or root
 name=hermes # Docker host name
 httpport=8080
 dnsport=53
@@ -46,8 +46,9 @@ docker run -d \
 	-e DNSMASQ_USER=$DNSMASQ_USER \
 	-e VIRTUAL_HOST=$name \
 	-e PIHOLE_DNS_="$DNS1;$DNS2" \
-        -e DNS_FQDN_REQUIRED="false" \
-        -e DNS_BOGUS_PRIV="false" \
+	-e DNSSEC="true"
+        -e DNS_FQDN_REQUIRED="true" \
+        -e DNS_BOGUS_PRIV="true" \
         -e REV_SERVER="true" \
         -e REV_SERVER_CIDR="192.168.0.0/16" \
         -e REV_SERVER_TARGET="192.168.1.1" \
