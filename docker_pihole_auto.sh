@@ -6,12 +6,12 @@ name=hermes # Docker host name
 httpport=8080
 dnsport=53
 
-# Check if host ip should be anything but 0.0.0.0 (all interfaces)
+# Check if ips.conf-file is present
 if [ -f $(pwd)/ips.conf ]; then
         . $(pwd)/ips.conf
 else
-        httpip=0.0.0.0
-	dnsip=0.0.0.0
+        httpip=0.0.0.0 # Host interface IP HTTP container availability
+	dnsip=0.0.0.0 # Host interface IP DNS container availability
 fi
 
 # Update to latest Pi-hole container image
