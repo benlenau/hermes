@@ -1,10 +1,10 @@
 #!/bin/bash
-DNS1=1.1.1.1 # Change this to your preferred DNS provider
-DNS2=1.0.0.1 # Change this to your preferred DNS provider
-DNSMASQ_USER=pihole # Change user running dns to either pihole (increase security) or root
-name=hermes # Docker host name
-httpport=8080
-dnsport=53
+DNS1=1.1.1.1         # Change this to your preferred DNS provider
+DNS2=1.0.0.1         # Change this to your preferred DNS provider
+DNSMASQ_USER=pihole  # Change user running dns to either pihole (increase security) or root
+name=$hostname       # Docker host name
+httpport=8080        # Pihole HTTP port (default 8080)
+dnsport=53           # DNS Port (default 53)
 
 # Check if ips.conf-file is present
 if [ -f $(pwd)/ips.conf ]; then
