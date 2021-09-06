@@ -2,7 +2,6 @@
 DNS1=1.1.1.1         # Change this to your preferred DNS provider
 DNS2=1.0.0.1         # Change this to your preferred DNS provider
 DNSMASQ_USER=pihole  # Change user running dns to either pihole (increase security) or root
-name=$(hostname)     # Docker host name
 httpport=8080        # Pihole HTTP port (default 8080)
 dnsport=53           # DNS Port (default 53)
 
@@ -10,8 +9,9 @@ dnsport=53           # DNS Port (default 53)
 if [ -f $(pwd)/ips.conf ]; then
         . $(pwd)/ips.conf
 else
-        httpip=0.0.0.0 # Host interface IP HTTP container availability
-	dnsip=0.0.0.0 # Host interface IP DNS container availability
+        httpip=0.0.0.0    # Host interface IP HTTP container availability
+	dnsip=0.0.0.0     # Host interface IP DNS container availability
+	name=hermes       # Docker host name
 fi
 
 # Update to latest Pi-hole container image
