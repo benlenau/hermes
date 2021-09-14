@@ -11,7 +11,7 @@ if [ -f $(pwd)/ips.conf ]; then
 else
         httpip=0.0.0.0    # Host interface IP HTTP container availability
 	dnsip=0.0.0.0     # Host interface IP DNS container availability
-	name=hermes       # Docker host name
+	name=$(hostname)  # Docker host name
 fi
 
 # Update to latest Pi-hole container image
