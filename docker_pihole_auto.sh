@@ -1,6 +1,6 @@
 #!/bin/bash
-DNS1=9.9.9.11        # Change this to your preferred DNS provider
-DNS2=149.112.112.11  # Change this to your preferred DNS provider
+DNS1=1.1.1.1        # Change this to your preferred DNS provider
+DNS2=1.0.0.1  # Change this to your preferred DNS provider
 DNSMASQ_USER=pihole  # Change user running dns to either pihole (increase security) or root
 httpport=8080        # Pihole HTTP port (default 8080)
 dnsport=53           # DNS Port (default 53)
