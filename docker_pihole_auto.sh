@@ -46,7 +46,6 @@ docker run -d \
 	-e DNSMASQ_USER=$DNSMASQ_USER \
 	-e VIRTUAL_HOST=$name \
 	-e PIHOLE_DNS_="$DNS1;$DNS2" \
-	-e DNSSEC="true" \
         -e DNS_FQDN_REQUIRED="true" \
         -e DNS_BOGUS_PRIV="true" \
         -e REV_SERVER="true" \
