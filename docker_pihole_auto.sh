@@ -43,6 +43,7 @@ docker run -d \
         --restart=unless-stopped \
 	--hostname=$name \
         -e WEBPASSWORD="" \
+	-e com.centurylinklabs.watchtower.enable="false" \
 	-e DNSMASQ_USER=$DNSMASQ_USER \
 	-e VIRTUAL_HOST=$name \
 	-e PIHOLE_DNS_="$DNS1;$DNS2" \
