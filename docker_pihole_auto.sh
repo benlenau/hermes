@@ -38,6 +38,8 @@ docker run -d \
         -p $httpip:$httpport:80 \
         -e TZ="Europe/Copenhagen" \
 	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
+	-v "$(pwd)/config/etc-pihole/:/etc/pihole/" \
+	-v "$(pwd)/config/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
         --dns=1.1.1.1 \
 	--dns=1.0.0.1 \
         --restart=unless-stopped \
