@@ -6,8 +6,8 @@ httpport=8080        # Pihole HTTP port (default 8080)
 dnsport=53           # DNS Port (default 53)
 
 # Check if ips.conf-file is present
-if [ -f $(pwd)/ips.conf ]; then
-        . $(pwd)/ips.conf
+if [ -f $(pwd)/hermes.conf ]; then
+        . $(pwd)/hermes.conf
 else
         httpip=0.0.0.0    # Host interface IP HTTP container availability
 	dnsip=0.0.0.0     # Host interface IP DNS container availability
