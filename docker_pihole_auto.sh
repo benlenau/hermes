@@ -1,20 +1,18 @@
 #!/bin/bash
-# Check if hermes.conf-file and load if present
+# Check and load hermes.conf-file if present
 if [ -f $(pwd)/hermes.conf ]; then . $(pwd)/hermes.conf; fi
 
-DNS1=${DNS1:-1.1.1.1} # Change this to your preferred DNS provider
-DNS2=${DNS2:-1.0.0.1} # Change this to your preferred DNS provider
+DNS1=${DNS1:-1.1.1.1} 		# Change this to your preferred DNS provider
+DNS2=${DNS2:-1.0.0.1} 		# Change this to your preferred DNS provider
 DNSMASQ_USER=${DNSMASQ_USER:-pihole} # Change user running dns to either pihole (increase security) or root
-httpport=${httpport:-8080} # Pihole HTTP port (default 8080)
-dnsport=${dnsport:-53} # DNS Port (default 53)
+httpport=${httpport:-8080} 	# Pihole HTTP port (default 8080)
+dnsport=${dnsport:-53} 		# DNS Port (default 53)
 httpip=${httpip:-0.0.0.0}	# Host interface IP HTTP container availability
 dnsip=${dnsip:-0.0.0.0}		# Host interface IP DNS container availability
 name=${name:-$(hostname)}	# Docker host name
 
 # Update to latest Pi-hole container image
 docker pull pihole/pihole:latest
-
-echo "Installing... SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport"
 
 echo
 read -p "Do you wish to stop and delete the current $name Docker install? [yN] " yn
