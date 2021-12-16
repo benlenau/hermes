@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Check and load hermes.conf-file if present
 if [ -f $(pwd)/hermes.conf ]; then . $(pwd)/hermes.conf; fi
 
@@ -55,6 +56,7 @@ docker run -d \
 echo
 printf "Please wait for Pi-hole Docker container to finish install"
 
+# Healthcheck of newly established Docker-container and continue when healthy
 for i in $(seq 1 60); do
     if [ "$(docker inspect -f "{{.State.Health.Status}}" $name)" = "healthy" ] ; then
         printf ' OK\n\n'
@@ -71,12 +73,12 @@ if [ $i -eq 60 ] ; then
 	exit 1
 fi
 
-# Add custom DNS records.
+# Custom DNS records.
 if [ -f $(pwd)/custom.list ]; then
 	docker cp $(pwd)/custom.list $name:/etc/pihole/custom.list
 fi
 
-# Add custom dnsmasq records.
+# Custom dnsmasq records.
 if [ -f $(pwd)/10-custom-dnsmasq.conf ]; then
 	docker cp $(pwd)/10-custom-dnsmasq.conf $name:/etc/dnsmasq.d/
 fi
