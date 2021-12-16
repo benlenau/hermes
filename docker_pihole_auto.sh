@@ -9,7 +9,7 @@ httpport=${httpport:-8080} # Pihole HTTP port (default 8080)
 dnsport=${dnsport:-53} # DNS Port (default 53)
 httpip=${httpip:-0.0.0.0}	# Host interface IP HTTP container availability
 dnsip=${dnsip:-0.0.0.0}		# Host interface IP DNS container availability
-name=${hostname:-$(hostname)}	# Docker host name
+name=${name:-$(hostname)}	# Docker host name
 
 # Update to latest Pi-hole container image
 docker pull pihole/pihole:latest
