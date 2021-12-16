@@ -14,6 +14,8 @@ name=${name:-$(hostname)}	# Docker host name
 # Update to latest Pi-hole container image
 docker pull pihole/pihole:latest
 
+echo "Installing... SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport"
+
 echo
 read -p "Do you wish to stop and delete the current $name Docker install? [yN] " yn
 case $yn in
