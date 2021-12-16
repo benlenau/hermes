@@ -1,5 +1,5 @@
 #!/bin/bash
-# Check if hermes.conf-file is present
+# Check if hermes.conf-file and load if present
 if [ -f $(pwd)/hermes.conf ]; then . $(pwd)/hermes.conf; fi
 
 DNS1=${DNS1:-1.1.1.1} # Change this to your preferred DNS provider
