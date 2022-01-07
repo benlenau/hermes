@@ -42,7 +42,7 @@ docker run -d \
 	--dns=1.0.0.1 \
         --restart=unless-stopped \
 	--hostname=$name \
-        -e WEBPASSWORD="" \
+        -e WEBPASSWORD="hermes" \
 	-e DNSMASQ_USER=$DNSMASQ_USER \
 	-e VIRTUAL_HOST=$name \
 	-e PIHOLE_DNS_="$DNS1;$DNS2" \
