@@ -30,6 +30,7 @@ pihole --white-regex "(\.|^)microsoft\.com$" "(\.|^)gvt3\.com$" "(\.|^)gvt2\.com
 
 # Blacklisting stuff
 pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$" ".live$" ".ga$" ".buzz$" ".date$"
+pihole -b mask.icloud.com mask-h2.icloud.com
 
 # Restart and reload Pi-hole
 pihole restartdns reload-lists
