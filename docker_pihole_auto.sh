@@ -5,23 +5,22 @@ if [ -f $(pwd)/hermes.conf ]; then . $(pwd)/hermes.conf; fi
 
 DNS1=${DNS1:-1.1.1.1} 		# Change this to your preferred DNS provider
 DNS2=${DNS2:-1.0.0.1} 		# Change this to your preferred DNS provider
-DNSMASQ_USER=${DNSMASQ_USER:-pihole} # Change user running dns to either pihole (increase security) or root
 httpport=${httpport:-8080} 	# Pihole HTTP port (default 8080)
 dnsport=${dnsport:-53} 		# DNS Port (default 53)
-httpip=${httpip:-0.0.0.0}	# Host interface IP HTTP container availability
-dnsip=${dnsip:-0.0.0.0}		# Host interface IP DNS container availability
+httpip=${httpip:-0.0.0.0}	# Host interface IP HTTP container availability (default all)
+dnsip=${dnsip:-0.0.0.0}		# Host interface IP DNS container availability (default all)
 name=${name:-$(hostname)}	# Docker host name
 
 # Update to latest Pi-hole container image
 docker pull pihole/pihole:latest
 
 echo
-read -p "Do you wish to stop and delete the current $name Docker install? [yN] " yn
+read -p "Do you wish to stop and delete the current Pi-hole Docker install? [yN] " yn
 case $yn in
 	Y | y ) echo
-	echo "Removing $name"
-	docker stop $name
-	docker rm $name;;
+	echo "Removing Pi-hole"
+	docker stop pihole
+	docker rm pihole;;
 	* ) exit 1;;
 esac
 
@@ -30,7 +29,7 @@ echo "Installing... SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnspo
 
 echo
 docker run -d \
-        --name $name \
+        --name pihole \
         -p $dnsip:$dnsport:53/tcp \
         -p $dnsip:$dnsport:53/udp \
         -p $httpip:$httpport:80 \
@@ -43,8 +42,6 @@ docker run -d \
         --restart=unless-stopped \
 	--hostname=$name \
         -e WEBPASSWORD="" \
-	-e DNSMASQ_USER=$DNSMASQ_USER \
-	-e VIRTUAL_HOST=$name \
 	-e PIHOLE_DNS_="$DNS1;$DNS2" \
         -e DNS_FQDN_REQUIRED="true" \
         -e DNS_BOGUS_PRIV="true" \
