@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# Export already added adlists
+# Preserve current adlists
 sqlite3 /etc/pihole/gravity.db "SELECT Address FROM adlist" |sort >pihole.list
 
-# Uncomment the following lines if you want more adlists added
-# The folloing wget-line is special because it first needs to be downloaded and sorted before being in a format that Pi-hole accepts
+# Un/comment or add to the following lines if you want more og less adlists added during Pi-hole install
 curl https://v.firebog.net/hosts/lists.php?type=tick >>temp.list
 echo "https://block.energized.pro/basic/formats/hosts.txt" >>temp.list
 echo "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt" >>temp.list
@@ -18,20 +17,20 @@ sort temp.list >all.list
 comm -23 pihole.list all.list | xargs -I{} sudo sqlite3 /etc/pihole/gravity.db "DELETE FROM adlist WHERE Address='{}';"
 comm -13 pihole.list all.list | xargs -I{} sudo sqlite3 /etc/pihole/gravity.db "INSERT INTO adlist (Address,Comment,Enabled) VALUES ('{}','Script added `date +%F`',1);"
 
-# Cleanup
+# Temp-file Cleanup
 rm all.list temp.list pihole.list
 
 # Add regex entries from mmotti
 #apt install -y python3
 #curl -sSl https://raw.githubusercontent.com/mmotti/pihole-regex/master/install.py | sudo python3
 
-# Whitelisting stuff
+# Add to whitelist
 pihole --white-regex "(\.|^)microsoft\.com$" "(\.|^)gvt3\.com$" "(\.|^)gvt2\.com$" "(\.|^)gstatic\.com$" "(\.|^)youtube\.com$" "(\.|^)ui\.com$" "(\.|^)msecnd\.net$"
 
-# Blacklisting stuff
+# Add to blacklist
 pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$" ".live$" ".ga$" ".buzz$" ".date$"
 pihole -b mask.icloud.com mask-h2.icloud.com
 
-# Restart and reload Pi-hole
+# Reload added lists and upgrade Pi-hole Gravity
 pihole restartdns reload-lists
 pihole -g
