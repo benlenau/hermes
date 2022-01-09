@@ -5,8 +5,8 @@ sqlite3 /etc/pihole/gravity.db "SELECT Address FROM adlist" |sort >pihole.list
 
 # Uncomment the following lines if you want more adlists added
 # The folloing wget-line is special because it first needs to be downloaded and sorted before being in a format that Pi-hole accepts
-#wget -qO - https://v.firebog.net/hosts/lists.php?type=tick | sort >>temp.list
-#echo "https://block.energized.pro/ultimate/formats/hosts.txt" >>temp.list
+wget -qO - https://v.firebog.net/hosts/lists.php?type=tick | sort >>temp.list
+echo "https://block.energized.pro/basic/formats/hosts.txt" >>temp.list
 echo "https://www.github.developerdan.com/hosts/lists/ads-and-tracking-extended.txt" >>temp.list
 echo "https://www.github.developerdan.com/hosts/lists/amp-hosts-extended.txt" >>temp.list
 echo "https://www.github.developerdan.com/hosts/lists/dating-services-extended.txt" >>temp.list
