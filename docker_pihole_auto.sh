@@ -51,7 +51,7 @@ docker run -d \
 	pihole/pihole:latest
 
 echo
-printf "Please wait for Pi-hole Docker container to finish install"
+printf "Waiting for Pi-hole Docker container to finish installation. Please wait"
 
 # Healthcheck of newly established Docker-container and continue when healthy
 for i in $(seq 1 60); do
@@ -66,7 +66,7 @@ done
 
 # Exit if healthcheck fails
 if [ $i -eq 60 ] ; then
-	echo "\nTimed out waiting for Pi-hole to start! Please consult container logs for more info (\`docker logs pihole\`)"
+	echo "\nTimeout waiting for Pi-hole to start! Please consult container logs for more info (\`docker logs pihole\`)"
 	exit 1
 fi
 
