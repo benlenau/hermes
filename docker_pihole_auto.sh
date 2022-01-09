@@ -25,7 +25,7 @@ case $yn in
 esac
 
 echo
-echo "Installing... SERVER: $name / HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport"
+echo "Installing... HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport"
 
 echo
 docker run -d \
@@ -55,7 +55,7 @@ printf "Please wait for Pi-hole Docker container to finish install"
 
 # Healthcheck of newly established Docker-container and continue when healthy
 for i in $(seq 1 60); do
-    if [ "$(docker inspect -f "{{.State.Health.Status}}" $name)" = "healthy" ] ; then
+    if [ "$(docker inspect -f "{{.State.Health.Status}}" pihole)" = "healthy" ] ; then
         printf ' OK\n\n'
 	break
     else
@@ -66,24 +66,24 @@ done
 
 # Exit if healthcheck fails
 if [ $i -eq 60 ] ; then
-	echo "\nTimed out waiting for $name to start! Please consult container logs for more info (\`docker logs $name\`)"
+	echo "\nTimed out waiting for Pi-hole to start! Please consult container logs for more info (\`docker logs pihole\`)"
 	exit 1
 fi
 
 # Custom DNS records.
 if [ -f $(pwd)/custom.list ]; then
-	docker cp $(pwd)/custom.list $name:/etc/pihole/custom.list
+	docker cp $(pwd)/custom.list pihole:/etc/pihole/custom.list
 fi
 
 # Custom dnsmasq records.
 if [ -f $(pwd)/10-custom-dnsmasq.conf ]; then
-	docker cp $(pwd)/10-custom-dnsmasq.conf $name:/etc/dnsmasq.d/
+	docker cp $(pwd)/10-custom-dnsmasq.conf pihole:/etc/dnsmasq.d/
 fi
 
 # Run adlists.sh inside Docker container to add and update adlists from other sources.
 if [ -f $(pwd)/adlists.sh ]; then
-	docker exec $name sh /home/adlists.sh
+	docker exec pihole sh /home/adlists.sh
 fi
 
 # Run Pi-hole DNS restart inside Docker container to make install changes permanent
-docker exec $name pihole restartdns
+docker exec pihole pihole restartdns
