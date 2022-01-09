@@ -15,7 +15,7 @@ name=${name:-$(hostname)}	# Docker host name
 docker pull pihole/pihole:latest
 
 echo
-read -p "Do you wish to stop and delete the current Pi-hole Docker install? [yN] " yn
+read -p "Stop and delete current Pi-hole Docker install? [yN] " yn
 case $yn in
 	Y | y ) echo
 	echo "Removing Pi-hole"
@@ -25,7 +25,7 @@ case $yn in
 esac
 
 echo
-echo "Installing... HTTP: $httpip:$httpport / DNS: $dnsip:$dnsport"
+echo "Installing Pi-hole on HTTP: $httpip:$httpport and DNS: $dnsip:$dnsport"
 
 echo
 docker run -d \
@@ -33,7 +33,7 @@ docker run -d \
         -p $dnsip:$dnsport:53/tcp \
         -p $dnsip:$dnsport:53/udp \
         -p $httpip:$httpport:80 \
-        -e TZ="Europe/Copenhagen" \
+        -v /etc/localtime:/etc/localtime:ro \
 	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
 	-v "$(pwd)/config/etc-pihole/:/etc/pihole/" \
 	-v "$(pwd)/config/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
@@ -51,7 +51,7 @@ docker run -d \
 	pihole/pihole:latest
 
 echo
-printf "Waiting for Pi-hole Docker container to finish installation. Please wait"
+printf "Please wait for Pi-hole Docker container to finish installation"
 
 # Healthcheck of newly established Docker-container and continue when healthy
 for i in $(seq 1 60); do
@@ -66,7 +66,7 @@ done
 
 # Exit if healthcheck fails
 if [ $i -eq 60 ] ; then
-	echo "\nTimeout waiting for Pi-hole to start! Please consult container logs for more info (\`docker logs pihole\`)"
+	echo "\nTimeout! Please consult Pi-hole container logs for more info (\`docker logs pihole\`)"
 	exit 1
 fi
 
