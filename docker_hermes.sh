@@ -48,6 +48,9 @@ docker run -d \
         -e REV_SERVER="true" \
         -e REV_SERVER_CIDR="192.168.0.0/16" \
         -e REV_SERVER_TARGET="192.168.1.1" \
+	-e FTLCONF_MAXDBDAYS=7 \
+	-e FTLCONF_DBINTERVAL=5 \
+	-e FTLCONF_BLOCK_ICLOUD_PR=true \
 	pihole/pihole:latest
 
 echo
