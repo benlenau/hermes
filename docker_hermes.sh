@@ -79,8 +79,8 @@ if [ -f $(pwd)/custom.list ]; then
 fi
 
 # Custom dnsmasq records.
-if [ -f $(pwd)/10-custom-dnsmasq.conf ]; then
-	docker cp $(pwd)/10-custom-dnsmasq.conf pihole:/etc/dnsmasq.d/
+if [ -f $(pwd)/dnsmasq.conf ]; then
+	docker cp $(pwd)/dnsmasq.conf pihole:/etc/dnsmasq.d/10-custom-dnsmasq.conf
 fi
 
 # Run adlists.sh inside Docker container to add and update adlists from other sources.
