@@ -35,8 +35,7 @@ docker run -d \
         -p $httpip:$httpport:80 \
         -v /etc/localtime:/etc/localtime:ro \
 	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
-	-v "$(pwd)/config/etc-pihole/:/etc/pihole/" \
-	-v "$(pwd)/config/etc-dnsmasq.d/:/etc/dnsmasq.d/" \
+	-v "$(pwd)/config/:/etc/pihole/" \
         --dns=1.1.1.1 \
 	--dns=1.0.0.1 \
         --restart=unless-stopped \
