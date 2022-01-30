@@ -27,6 +27,11 @@ esac
 echo
 echo "Installing Pi-hole on HTTP: $httpip:$httpport and DNS: $dnsip:$dnsport"
 
+# Create custom dnsmasq records if not present.
+if [ ! -f $(pwd)/dnsmasq.conf ]; then
+        touch $(pwd)/dnsmasq.conf
+fi
+
 echo
 docker run -d \
         --name pihole \
@@ -36,6 +41,7 @@ docker run -d \
         -v /etc/localtime:/etc/localtime:ro \
 	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
 	-v "$(pwd)/config/:/etc/pihole/" \
+	-v "$(pwd)/dnsmasq.conf:/etc/dnsmasq.d/10-custom-dnsmasq.conf:ro" \
         --dns=1.1.1.1 \
 	--dns=1.0.0.1 \
         --restart=unless-stopped \
@@ -75,11 +81,6 @@ fi
 # Custom DNS records.
 if [ -f $(pwd)/custom.list ]; then
 	docker cp $(pwd)/custom.list pihole:/etc/pihole/custom.list
-fi
-
-# Custom dnsmasq records.
-if [ -f $(pwd)/dnsmasq.conf ]; then
-	docker cp $(pwd)/dnsmasq.conf pihole:/etc/dnsmasq.d/10-custom-dnsmasq.conf
 fi
 
 # Run adlists.sh inside Docker container to add and update adlists from other sources.
