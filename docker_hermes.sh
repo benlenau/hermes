@@ -3,8 +3,8 @@
 # Check and load hermes.conf-file if present
 if [ -f $(pwd)/hermes.conf ]; then . $(pwd)/hermes.conf; fi
 
-DNS1=${DNS1:-1.1.1.1} 		# Change this to your preferred DNS provider
-DNS2=${DNS2:-1.0.0.1} 		# Change this to your preferred DNS provider
+DNS1=${DNS1:-9.9.9.9} 		# Change this to your preferred DNS provider
+DNS2=${DNS2:-149.112.112.112} 	# Change this to your preferred DNS provider
 httpport=${httpport:-8080} 	# Pihole HTTP port (default 8080)
 dnsport=${dnsport:-53} 		# DNS Port (default 53)
 httpip=${httpip:-0.0.0.0}	# Host interface IP HTTP container availability (default all)
@@ -42,8 +42,8 @@ docker run -d \
 	-v "$(pwd)/adlists.sh:/home/adlists.sh:ro" \
 	-v "$(pwd)/config/:/etc/pihole/" \
 	-v "$(pwd)/dnsmasq.conf:/etc/dnsmasq.d/10-custom-dnsmasq.conf:ro" \
-        --dns=1.1.1.1 \
-	--dns=1.0.0.1 \
+        --dns=127.0.0.1 \
+	--dns=9.9.9.9 \
         --restart=unless-stopped \
 	--hostname=$name \
         -e WEBPASSWORD="" \
