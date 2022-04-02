@@ -46,6 +46,7 @@ docker run -d \
 	--dns=9.9.9.9 \
         --restart=unless-stopped \
 	--hostname=$name \
+	--cap-add=NET_ADMIN \
         -e WEBPASSWORD="" \
 	-e PIHOLE_DNS_="$DNS1;$DNS2" \
         -e DNS_FQDN_REQUIRED="true" \
