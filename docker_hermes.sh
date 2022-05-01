@@ -21,7 +21,7 @@ docker run -d \
 	--dns=127.0.0.1 \
 	--dns=9.9.9.9 \
 	--restart=unless-stopped \
-	--hostname=$hostname \
+	--hostname=$(hostname) \
 	--env-file=$(pwd)/hermes.env \
 	pihole/pihole:latest
 
