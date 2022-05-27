@@ -19,7 +19,7 @@ docker run -d \
 	-v $(pwd)/config/:/etc/pihole/ \
 	-v $(pwd)/dnsmasq.conf:/etc/dnsmasq.d/10-custom-dnsmasq.conf:ro \
 	--dns=127.0.0.1 \
-	--dns=9.9.9.9 \
+	--dns=1.1.1.1 \
 	--restart=unless-stopped \
 	--hostname=$(hostname) \
 	--env-file=$(pwd)/hermes.env \
