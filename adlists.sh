@@ -29,6 +29,7 @@ pihole --white-regex "(\.|^)microsoft\.com$" "(\.|^)gvt3\.com$" "(\.|^)gvt2\.com
 pihole -w video-fa.scdn.co --comment "Spotify Podcasts"
 pihole -w i.instagram.com --comment "Instagram"
 pihole -w amp-api-edge.apps.apple.com --comment "Apple App Store"
+pihole -w www.nfbio.dk --comment "Nordisk Film Biografer"
 
 # Add to blacklist
 pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$" ".live$" ".ga$" ".buzz$" ".date$"
