@@ -32,6 +32,7 @@ pihole -w amp-api-edge.apps.apple.com --comment "Apple App Store"
 pihole -w www.nfbio.dk --comment "Nordisk Film Biografer"
 pihole -w t.co --comment "Twitter Links"
 pihole -w l.instagram.com --comment "Instagram Links (app)"
+pihole -w services.visualstudio.com --comment "Jyskebank (app)"
 
 # Add to blacklist
 pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$" ".live$" ".ga$" ".buzz$" ".date$"
