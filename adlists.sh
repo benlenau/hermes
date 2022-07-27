@@ -34,7 +34,7 @@ pihole -w t.co --comment "Twitter Links"
 pihole -w dc.services.visualstudio.com --comment "Jyske Bank App"
 
 # Add to blacklist
-pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$" ".live$" ".ga$" ".buzz$" ".date$" ".io$" ".mx$" ".uz$" ".monster$" ".ae$"
+pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$" ".live$" ".ga$" ".buzz$" ".date$" ".io$" ".mx$" ".uz$" ".monster$" ".ae$" --comment "Bad TLDs"
 
 # Reload added lists and upgrade Pi-hole Gravity
 pihole restartdns reload-lists
