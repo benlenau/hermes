@@ -28,9 +28,9 @@ rm all.list temp.list pihole.list
 pihole --white-regex "(\.|^)microsoft\.com$" "(\.|^)gvt3\.com$" "(\.|^)gvt2\.com$" "(\.|^)gstatic\.com$" "(\.|^)youtube\.com$" "(\.|^)ui\.com$" "(\.|^)msecnd\.net$"
 pihole -w video-fa.scdn.co --comment "Spotify Podcasts"
 pihole -w i.instagram.com --comment "Instagram"
-pihole -w amp-api-edge.apps.apple.com --comment "Apple App Store"
-pihole -w www.nfbio.dk --comment "Nordisk Film Biografer"
-pihole -w t.co --comment "Twitter Links"
+pihole -w amp-api-edge.apps.apple.com --comment "iOS App Store (app)"
+pihole -w www.nfbio.dk --comment "Nordisk Film Biografer (hjemmeside)"
+pihole -w t.co --comment "Twitter Links (multiple apps)"
 pihole -w l.instagram.com --comment "Instagram Links (app)"
 pihole -w dc.services.visualstudio.com --comment "Jyskebank (app)"
 
