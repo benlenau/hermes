@@ -29,7 +29,7 @@ pihole --white-regex "(\.|^)microsoft\.com$" "(\.|^)gvt3\.com$" "(\.|^)gvt2\.com
 pihole -w video-fa.scdn.co --comment "Spotify App"
 pihole -w i.instagram.com l.instagram.com --comment "Instagram App"
 pihole -w amp-api-edge.apps.apple.com --comment "iOS App Store"
-pihole -w nfbio.dk --comment "Nordisk Film"
+pihole --white-regex "(\.|^)nfbio\.dk$" --comment "Nordisk Film"
 pihole -w t.co --comment "Twitter Links"
 pihole -w dc.services.visualstudio.com --comment "Jyske Bank App"
 
