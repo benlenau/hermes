@@ -25,7 +25,7 @@ rm all.list temp.list pihole.list
 #curl -sSl https://raw.githubusercontent.com/mmotti/pihole-regex/master/install.py | sudo python3
 
 # Add to whitelist
-pihole --white-regex "(\.|^)microsoft\.com$" "(\.|^)gvt3\.com$" "(\.|^)gvt2\.com$" "(\.|^)gstatic\.com$" "(\.|^)youtube\.com$" "(\.|^)ui\.com$" "(\.|^)msecnd\.net$"
+pihole --white-regex "(\.|^)microsoft\.com$" "(\.|^)gvt3\.com$" "(\.|^)gvt2\.com$" "(\.|^)gstatic\.com$" "(\.|^)youtube\.com$" "(\.|^)ui\.com$" "(\.|^)msecnd\.net$" --comment "hermes default"
 pihole --white-regex "(\.|^)nfbio\.dk$" --comment "Nordisk Film"
 pihole -w video-fa.scdn.co --comment "Spotify App"
 pihole -w i.instagram.com l.instagram.com --comment "Instagram App"
