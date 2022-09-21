@@ -11,6 +11,10 @@ echo "https://www.github.developerdan.com/hosts/lists/amp-hosts-extended.txt" >>
 echo "https://www.github.developerdan.com/hosts/lists/dating-services-extended.txt" >>temp.list
 echo "https://www.github.developerdan.com/hosts/lists/hate-and-junk-extended.txt" >>temp.list
 echo "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts" >>temp.list
+echo "https://justdomains.github.io/blocklists/lists/easyprivacy-justdomains.txt" >>temp.list
+echo "https://raw.githubusercontent.com/lassekongo83/Frellwits-filter-lists/master/Frellwits-Swedish-Hosts-File.txt" >>temp.list
+echo "https://raw.githubusercontent.com/r-a-y/mobile-hosts/master/AdguardMobileAds.txt" >>temp.list
+echo "https://raw.githubusercontent.com/blocklistproject/Lists/master/alt-version/gambling-nl.txt" >>temp.list
 sort temp.list >all.list
 
 # Add adlists to Pi-hole database
