@@ -10,7 +10,7 @@ printf "\nInstalling Pi-hole... "
 [ ! -f $(pwd)/dnsmasq.conf ] && touch $(pwd)/dnsmasq.conf
 [ ! -f $(pwd)/hermes.env ] && touch $(pwd)/hermes.env
 
-docker run -d \
+docker run -d $(cat hermes_network.conf) \
 	--name pihole \
 	-p 0.0.0.0:53:53/tcp \
 	-p 0.0.0.0:53:53/udp \
