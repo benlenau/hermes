@@ -14,7 +14,6 @@ docker run -d $(cat hermes_network.conf) \
 	--name pihole \
 	-p 0.0.0.0:53:53/tcp \
 	-p 0.0.0.0:53:53/udp \
-	-p 0.0.0.0:8080:80 \
 	-v $(pwd)/adlists.sh:/home/adlists.sh:ro \
 	-v $(pwd)/config/:/etc/pihole/ \
 	-v $(pwd)/dnsmasq.conf:/etc/dnsmasq.d/10-custom-dnsmasq.conf:ro \
