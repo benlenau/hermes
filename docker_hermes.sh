@@ -9,7 +9,7 @@ printf "\nInstalling Pi-hole... "
 # Create custom dnsmasq records and settings file (required)
 [ ! -f $(pwd)/dnsmasq.conf ] && touch $(pwd)/dnsmasq.conf
 [ ! -f $(pwd)/hermes.env ] && touch $(pwd)/hermes.env
-[ ! -f $(pwd)/hermes_network.conf ] && echo "-p 0.0.0.0:8080:80/tcp" > $(pwd)/hermes_network.conf
+[ ! -f $(pwd)/hermes_network.conf ] && echo "-p 0.0.0.0:8080:80/tcp --hostname=$(hostname)" > $(pwd)/hermes_network.conf
 
 docker run -d $(cat hermes_network.conf) \
 	--name pihole \
@@ -21,7 +21,6 @@ docker run -d $(cat hermes_network.conf) \
 	--dns=127.0.0.1 \
 	--dns=1.1.1.1 \
 	--restart=unless-stopped \
-	--hostname=$(hostname) \
 	--env-file=$(pwd)/hermes.env \
 	pihole/pihole:latest
 
