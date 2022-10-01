@@ -18,7 +18,6 @@ docker run -d $(cat hermes_network.conf) \
 	-v $(pwd)/adlists.sh:/home/adlists.sh:ro \
 	-v $(pwd)/config/:/etc/pihole/ \
 	-v $(pwd)/dnsmasq.conf:/etc/dnsmasq.d/10-custom-dnsmasq.conf:ro \
-	-v /etc/localtime:/etc/localtime:ro \
 	--dns=127.0.0.1 \
 	--dns=1.1.1.1 \
 	--restart=unless-stopped \
