@@ -31,11 +31,13 @@ rm all.list temp.list pihole.list
 # Add to whitelist
 pihole --white-regex "(\.|^)microsoft\.com$" "(\.|^)gvt3\.com$" "(\.|^)gvt2\.com$" "(\.|^)gstatic\.com$" "(\.|^)youtube\.com$" "(\.|^)ui\.com$" "(\.|^)msecnd\.net$" --comment "Hermes Default"
 pihole --white-regex "(\.|^)nfbio\.dk$" --comment "Nordisk Film"
+pihole --white-regex "(\.|^)demdex\.net$" "(\.|^)split\.io$" "(\.|^)adobedtm\.com$" --comment "Coop App"
+pihole --white-regex "(\.|^)crashlytics\.com$" "(\.|^)app-measurement\.com$" --comment "Many Apps"
+pihole --white-regex "(\.|^)instagram\.com$" --comment "Instagram"
+pihole --white-reget "(\.|^)apple\.com$" --comment "Apple"
 pihole -w video-fa.scdn.co --comment "Spotify App"
-pihole -w i.instagram.com l.instagram.com --comment "Instagram App"
-pihole -w amp-api-edge.apps.apple.com --comment "iOS App Store"
 pihole -w t.co --comment "Twitter Links"
-pihole -w dc.services.visualstudio.com --comment "Jyske Bank App"
+pihole -w coop.dk.ssl.sc.omtrdc.net --comment "Coop App"
 
 # Add to blacklist
 #pihole --regex ".ru$" ".work$" ".fit$" ".casa$" ".loan$" ".cf$" ".tk$" ".rest$" ".ml$" ".london$" ".top$" ".live$" ".ga$" ".buzz$" ".date$" ".io$" ".mx$" ".uz$" ".monster$" ".ae$" --comment "Bad TLDs"
