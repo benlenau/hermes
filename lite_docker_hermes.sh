@@ -65,6 +65,7 @@ docker exec pihole pihole --white-regex \
 	"(\.|^)ui\.com$" \
 	"(\.|^)youtube\.com$" \
 	"(\.|^)app-measurement\.com$" \
+	"(\.|^)roblox\.com$" \
 	--comment "Hermes Lite Default" >/dev/null 2>&1
 
 # Run Pi-hole DNS restart inside Docker container to make install changes permanent.
