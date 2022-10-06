@@ -30,6 +30,7 @@ docker run -d $(cat hermes_network.conf) \
 	-v $(pwd)/dnsmasq.conf:/etc/dnsmasq.d/10-custom-dnsmasq.conf:ro \
 	-v /etc/localtime:/etc/localtime:ro \
 	--restart=unless-stopped \
+	--label=com.centurylinklabs.watchtower.enable=false \
 	pihole/pihole:latest >/dev/null 2>&1
 
 # Healthcheck of newly established Docker-container and continue when healthy.
