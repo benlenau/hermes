@@ -19,13 +19,12 @@ printf "\nCreating files."
 printf "\nInstalling Pi-hole."
 
 docker run -d $(cat hermes.conf) \
+	-p 0.0.0.0:53:53/udp \
+	-p 0.0.0.0:53:53/tcp \
 	--name=pihole \
 	--dns=127.0.0.1 \
 	--dns=1.1.1.1 \
 	--env-file=$(pwd)/hermes.env \
-	-p 0.0.0.0:53:53/tcp \
-	-p 0.0.0.0:53:53/udp \
-	-v $(pwd)/adlists.sh:/home/adlists.sh:ro \
 	-v $(pwd)/config/:/etc/pihole/ \
 	-v $(pwd)/dnsmasq.conf:/etc/dnsmasq.d/10-custom-dnsmasq.conf:ro \
 	-v /etc/localtime:/etc/localtime:ro \
